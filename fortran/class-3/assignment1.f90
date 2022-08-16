@@ -1,27 +1,32 @@
-program asgmt
+program read_write
  implicit none
  
- integer :: c2(13), c5(13), nlines, r1c9, r1c10, i,j
- real :: r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, c6(13), c7(13),c8(13),c9(13),c10(13)
- character(len=10) :: c1(13), c3(13), c4(13), r1c1, r1c8, c11(13)
+ character(len=10) :: r1c1, r1c8, col1(13), col3(13), col4(13), col11(13),sep
+ integer :: r1c9, r1c10, nsections, i, j, col2(13), col5(13)
+ real :: r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, col6(13), col7(13), col8(13), col9(13), col10(13)
  
- nlines = 12293
- sections = 878
  open(unit=1,file='input4.pdb',action='read')
- open(unit=2,file='input4_out.pdb',action='write')
-
+ open(unit=2,file='output4.pdb',action='write')
+ 
+ !For first line
  read(1,*) r1c1, r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, r1c8, r1c9, r1c10
- write(2,"(a6,4x,2(f5.3,4x),f5.3,2x,3(f5.2,2x),a1,1x,i1,11x,i1)") r1c1, r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, r1c8, r1c9, r1c10
-
- do j=1,sections
-
+ write(2,"(a6,3(4x,f5.3),3(2x,f5.2),1x,a1,1x,i1,11x,i1)") r1c1, r1c2, r1c3, r1c4, r1c5, r1c6, r1c7, r1c8, r1c9, r1c10
+ 
+ !For similar sections
+ nsections = 878
+ do j=1,nsections
+ 
   do i=1,13
-   read(1,*) c1(i), c2(i), c3(i), c4(i), c5(i), c6(i), c7(i), c8(i), c9(i), c10(i)
-   write(2,"a4,6x,i2,2x,a1,7x,a1,3x,i1,6x,3(f6.3,2x),2(f4.2,2x),11x,a1") c1(i), c2(i), c3(i), c4(i), c5(i), c6(i), c7(i), c8(i), c9(i), c10(i)
+   read(1,*) col1(i),col2(i),col3(i),col4(i),col5(i),col6(i),col7(i),col8(i),col9(i),col10(i),col11(i)
+   write(2,"(a4,5x,i2,2x,a1,7x,a1,3x,i1,6x,3(f6.3,2x),f4.2,2x,f4.2,11x,a1)") & 
+   col1(i),col2(i),col3(i),col4(i),col5(i),col6(i), &
+   col7(i),col8(i),col9(i),col10(i),col11(i)
   enddo
-  write(2,"a3") 'END'
-
+  
+  !For separator
+  read(1,*) sep
+  write(2,"(a3)") sep
+    
  enddo
  
-
-end program asgmt
+end program read_write
