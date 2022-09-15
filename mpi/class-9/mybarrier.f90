@@ -21,6 +21,11 @@ program mybarrier
   write(*,*) 'Process ',0,' at start of barrier'
   do i=1,nprocs-1
    call mpi_recv(test,1,mpi_integer,i,i,mpi_comm_world,mpi_status_ignore,ierr)
+  enddo
+ end if
+ 
+ if(id==0) then
+  do i=1,nprocs-1
    call mpi_send(test,1,mpi_integer,i,i,mpi_comm_world,ierr)
   enddo
   write(*,*) 'Process ',0,' at end of barrier'
