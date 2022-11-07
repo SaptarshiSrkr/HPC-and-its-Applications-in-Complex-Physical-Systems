@@ -17,7 +17,6 @@ subroutine force_calc(TotAtom,Box,Rcut,r,Sig,Eps,Force,PE)
 
  ! calculting force and energy 
 
-
  PE=0.d0
  Force=0.d0
  do atom1=1,TotAtom-1
